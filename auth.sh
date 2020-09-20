@@ -5,8 +5,8 @@ INSIDE_PORT=6673
 PORT=${1:-${DEFAULT_PORT}}
 
 export INFERNO_ROOT=/usr/inferno-os
-export KEYFS_PASS=$1
-export AUTH_ADDR=auth.metacoma.io
+export AUTH_ADDR=$1
+export KEYFS_PASS=$2
 
 docker run --rm -it --name auth 					     \
   -e AUTH_ADDR								     \

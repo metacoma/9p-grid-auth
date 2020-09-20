@@ -1,0 +1,24 @@
+name: grid-auth
+root: .
+
+startup_window: grid-auth
+
+windows:
+  - config:
+      panes:
+        - tmuxinator edit grid-auth
+  - grid-auth:
+      pre:
+        - export AUTH_CONTAINER_NAME=auth
+        - export AUTH_ADDR=auth.domain.ltd
+        - export KEYFS_PASS=KEYFS_PASSWORD
+        - alias container_cleanup='rm -rf {host,keyring,keydb}/*'
+      panes:
+        - 
+          - test -d host || mkdir host
+          - chmod a+rwx host keyring keydb
+          - docker ps -qf name=${AUTH_CONTAINER_NAME} | grep . && (docker stop -t1 ${AUTH_CONTAINER_NAME}; docker rm -f ${AUTH_CONTAINER_NAME} ) 
+          - ./auth.sh ${AUTH_ADDR} ${KEYFS_PASS}
+        -
+          -
+          -
