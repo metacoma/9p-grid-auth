@@ -18,5 +18,5 @@ docker run --rm -it --name auth 					     \
   -p 0.0.0.0:${DEFAULT_PORT}:${INSIDE_PORT}                           	     \
   -p 0.0.0.0:42421:1917                           	     		     \
   --entrypoint emu-g							     \
-  metacoma/inferno-os:latest                                                 \
+  dievri/inferno-os:changelogin_noninteractive                               \
   -r ${INFERNO_ROOT}
